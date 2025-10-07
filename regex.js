@@ -100,7 +100,7 @@ console.log("Пример 12: ", str12.match(regex12));
 
 
 //13. Квантификатор {n,}
-//{n,} - n или больше вовторений
+//{n,} - n или больше повторений
 const regex13 = /\d{2,}/g;
 const str13 = "1 12 123 1234";
 console.log("Пример 13: ", str13.match(regex13));
@@ -139,3 +139,59 @@ const regex18 = /cat|dog/g;
 const str18 = "I like cats and dogs.";
 console.log("Пример 18: "б str18.match(regex18));
 
+//19 захват групп с помощью match()
+const regex19 = /(\w+)@(\w+\.\w+)/;
+const str19 = "test@example.com";
+const match19 = str19.match(regex19);
+
+console.log("Пример 19 (полное совпадение)", match19[0]);
+console.log("Пример 19 (группа 1) ", match19[1]);
+console.log("Пример 19 (группа 2) ", match19[2]);
+
+//Пример 20. Метод replace() с регулярным выражением
+//Заменяет найденое в строке по шаблону
+const regex20 = /-| /g;
+const str20 = "2025-10-01 12:00";
+console.log("Пример 20 ", str20.replace(regex20, ":"));
+
+//Пример 21. разделить строку на массив подстрок
+//метод split()
+const regex21 = /\d/g;
+const str21 = "itemitem2item3";
+console.log("Пример 21 ", str21.split(regex21));
+
+//Упражнение 1
+//найти все слова JS в строке, не зависимо от регистра.
+const exStr1 = "I love JS. js is awesome. Js is powerful";
+const exRegex1 = /js/gi;
+console.log("упражнение 1 ", exStr1.match(exRegex1));
+
+//упражнение 2
+//проверить является ли номер телефона валидным.
+//валидный формат ХХХ-ХХХ-ХХХХ
+const exStr2_1 = "123-456-7890";
+const exStr2_2 = "123-456-789";
+
+const exRegex2 = /^\d{3}-\d{3}-\d{4}$/;
+console.log("Упражнение 2 (валидный)", exRegex2.test(exStr2_1));
+console.log("Упражнение 2 (невалидный)", exRegex2.test(exStr2_2));
+
+//Упражнение 3. Убрать лишний пробелы
+const exStr3 = "Hello   world,   this   is  a   test.";
+console.log("упражнение 3 ", exStr3.replace(/\s+/g, " "));
+
+//Упражнение 4. Валидация пароля
+//пароль должен быть минимум 8 символов, содержать
+//хотя бы одну букву в нижнем регистре и одну в верхнем регистре
+
+const pass1 = 'aB123456';
+const pass2 = 'ab123456';
+const exRegex4 = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+//^ - начало строки
+//(?=.*[a-z]) - просмотр вперёд - где в строке есть строчная буква
+//(?=.*[A-Z]) - просмотр вперёд - где в строке есть заглавная буква
+//(?=.*\d) - ищем цифру
+//{8,} - строка не менее 8 символов
+//$ - конец строки
+console.log("упражнение 4 (валидный) ", exRegex4.test(pass1));
+console.log("упражнение 4 (невалидный) ", exRegex4.test(pass2));
